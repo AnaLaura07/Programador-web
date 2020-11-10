@@ -20,8 +20,6 @@ serviços :
       - " 9000: 9000 "
     volumes :
       - " .: / var / www / html / "
-    # comando: php -S 0.0.0.0:9000 -t public /
-    # links:
       # - mysql
   mysql :
     imagem : mysql: 5.7
