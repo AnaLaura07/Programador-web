@@ -1,0 +1,37 @@
+versão : " 3.7 " 
+serviços :
+  nginx :
+    imagem : nginx: 1.17.3
+    container_name : nginx
+    portas :
+      - " 8080: 80 "
+    volumes :
+      - " .: / var / www / html / "
+      - " ./webserver/nginx.conf:/etc/nginx/nginx.conf "
+    links :
+      - php
+      - mysql
+  php :
+    construir :
+      contexto : .
+    imagem : phpdocker
+    container_name : php
+    portas :
+      - " 9000: 9000 "
+    volumes :
+      - " .: / var / www / html / "
+    # comando: php -S 0.0.0.0:9000 -t public /
+    # links:
+      # - mysql
+  mysql :
+    imagem : mysql: 5.7
+    container_name : mysql
+    portas :
+      - " 3307: 3306 "
+    volumes :
+      - mysql: / var / lib / mysql /
+    ambiente :
+      MYSQL_DATABASE : ' banco de dados '
+      MYSQL_USER : ' root '
+      MYSQL_PASSWORD : ' 12345678 '
+      MYSQL_ROOT_PASSWORD : ' 12345 '
